@@ -7,7 +7,7 @@ let mocha = new Mocha()
 
 // reply to request with "Hello World!"
 app.get('/', function(req, res) {
-    mocha.addFile('./bus-pirate/test/all.js')
+    mocha.addFile('./test/all.js')
     mocha.run((failures) => {
         if (failures) {
             res.sendStatus(500)
