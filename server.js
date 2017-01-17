@@ -14,7 +14,7 @@ app.get('/', function(req, res) {
             res.end(failures)
         } else {
             res.sendStatus(200)
-            res.end()
+            res.end('')
         }
     })
 });
