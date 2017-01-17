@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install git python build-essential
 WORKDIR /usr/src/app
 
 # Copies the package.json first for better cache on later pushes
-COPY package.json package.json
+# COPY package.json package.json
 
 RUN git clone https://github.com/nodebotanist/node-bus-pirate.git ./
 
