@@ -32,7 +32,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/update', (req, res) => {
-    simpleGit.clone('https://github.com/nodebotanist/node-bus-pirate.git', './', (err) => {
+    simpleGit.pull((err) => {
         if (err) {
             res.sendStatus(500)
             res.end(err)
