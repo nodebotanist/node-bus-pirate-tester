@@ -18,6 +18,8 @@ function runTests() {
 
 runTests()
 
+var simpleGit = require('simple-git')();
+
 // reply to request with "Hello World!"
 app.get('/', function(req, res) {
     if (failures) {
@@ -30,7 +32,15 @@ app.get('/', function(req, res) {
 });
 
 app.get('/update', (req, res) => {
-
+    simpleGit.clone('https://github.com/nodebotanist/node-bus-pirate.git', './', (err) => {
+        if (err) {
+            res.sendStatus(500)
+            res.end(err)
+        } else {
+            res.sendStatus(200)
+            res.end('')
+        }
+    })
 })
 
 //start a server on port 80 and log its start to our console
