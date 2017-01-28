@@ -15,14 +15,10 @@ describe('LIVE HARDWARE: Main BusPirate module', () => {
         busPirate = undefined;
     })
 
-    after(() => {
-        fs.stat.restore()
-    })
-
     describe('constructor', () => {
         it('should construct when a port that exists is passed', () => {
             busPirate = new BusPirate({
-                port: '/dev/tty.usbserial-xxxx'
+                port: '/dev/ttyUSB0'
             })
 
             assert(busPirate instanceof BusPirate)
@@ -31,7 +27,7 @@ describe('LIVE HARDWARE: Main BusPirate module', () => {
         it('should fail when a non-existant port is passed', () => {
             let fn = () => {
                 busPirate = new BusPirate({
-                    port: '/dev/tty.usbserial-yyyy'
+                    port: '/dev/ttyUSBxxxx'
                 })
             }
 
@@ -50,9 +46,8 @@ describe('LIVE HARDWARE: Main BusPirate module', () => {
     describe('start()', () => {
         it('should fire the ready event when the bus pirate sends BBIO1', (done) => {
             busPirate = new BusPirate({
-                port: '/dev/tty.usbserial-xxxx'
+                port: '/dev/ttyUSB0'
             })
-            stubPort(busPirate)
 
             let eventHandler = sinon.spy()
 
@@ -60,8 +55,6 @@ describe('LIVE HARDWARE: Main BusPirate module', () => {
             busPirate.on('ready', () => {
                 eventHandler()
             })
-
-            busPirate.port.fakeReady()
 
             setTimeout(() => {
                 assert(eventHandler.called, 'Ready event handler was not called')
@@ -73,20 +66,15 @@ describe('LIVE HARDWARE: Main BusPirate module', () => {
     describe('reset()', () => {
         it('should fire a 0x00, wait for BBIO1, then fire 0x0F', (done) => {
             busPirate = new BusPirate({
-                port: '/dev/tty.usbserial-xxxx'
+                port: '/dev/ttyUSB0'
             })
-            stubPort(busPirate)
 
             busPirate.start()
-
-            busPirate.port.fakeReady()
 
             busPirate.on('ready', () => {
                 let writeSpy = sinon.spy(busPirate.port, 'write')
 
                 busPirate.reset(() => {})
-
-                busPirate.port.fakeReady()
 
                 setTimeout(() => {
                     assert(writeSpy.called, 'reset() did not call port.write')
