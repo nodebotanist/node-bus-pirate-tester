@@ -8,18 +8,30 @@ let mocha = new Mocha()
 mocha.addFile('./test/all.js')
 mocha.addFile('./hardware-tests/general.js')
 
+let failures
+
+function runTests() {
+    mocha.run((runFailures) => {
+        failures = runFailures
+    })
+}
+
+runTests()
+
 // reply to request with "Hello World!"
 app.get('/', function(req, res) {
-    mocha.run((failures) => {
-        if (failures) {
-            res.sendStatus(500)
-            res.end(failures.toString())
-        } else {
-            res.sendStatus(200)
-            res.end('')
-        }
-    })
+    if (failures) {
+        res.sendStatus(500)
+        res.end(failures.toString())
+    } else {
+        res.sendStatus(200)
+        res.end('')
+    }
 });
+
+app.get('/update', (req, res) => {
+
+})
 
 //start a server on port 80 and log its start to our console
 var server = app.listen(80, function() {
