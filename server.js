@@ -37,6 +37,7 @@ app.get('/update', (req, res) => {
             res.sendStatus(500)
             res.end(err)
         } else {
+            runTests()
             res.sendStatus(200)
             res.end('')
         }
