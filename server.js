@@ -12,7 +12,7 @@ app.get('/', function(req, res) {
     mocha.run((failures) => {
         if (failures) {
             res.sendStatus(500)
-            res.end(failures)
+            res.end(failures.toString())
         } else {
             res.sendStatus(200)
             res.end('')

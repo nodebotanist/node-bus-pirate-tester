@@ -5,7 +5,7 @@
 const assert = require('chai').assert
 const sinon = require('sinon')
 const fs = require('fs')
-const port = '/dev/tty.usbserial-AI03KY7Z'
+const port = '/dev/ttyUSB0'
 
 const BusPirate = require('../BusPirate.js')
 
