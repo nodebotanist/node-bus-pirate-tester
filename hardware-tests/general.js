@@ -19,7 +19,7 @@ describe('LIVE HARDWARE: Main BusPirate module', () => {
     })
 
     after(() => {
-        busPirate.port.release()
+        busPirate.port.close()
     })
 
     describe('constructor', () => {
