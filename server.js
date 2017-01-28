@@ -3,14 +3,15 @@ var app = express();
 
 const Mocha = require('mocha')
 
-let mocha = new Mocha()
-
-// mocha.addFile('./test/all.js')
-mocha.addFile('./hardware-tests/general.js')
-
+let mocha
 let failures
 
 function runTests() {
+    mocha = new Mocha()
+
+    // mocha.addFile('./test/all.js')
+    mocha.addFile('./hardware-tests/general.js')
+
     mocha.run((runFailures) => {
         failures = runFailures
     })
