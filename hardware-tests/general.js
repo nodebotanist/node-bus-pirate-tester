@@ -8,14 +8,18 @@ const fs = require('fs')
 const port = '/dev/ttyUSB0'
 
 const BusPirate = require('../BusPirate.js')
+let busPirate
 
 describe('LIVE HARDWARE: Main BusPirate module', () => {
-    let busPirate
 
     before(() => {
         busPirate = new BusPirate({
             port: port
         })
+    })
+
+    after(() => {
+        busPirate.reset()
     })
 
     describe('constructor', () => {
