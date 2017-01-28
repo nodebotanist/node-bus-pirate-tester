@@ -5,7 +5,7 @@ const Mocha = require('mocha')
 
 let mocha = new Mocha()
 
-mocha.addFile('./test/all.js')
+// mocha.addFile('./test/all.js')
 mocha.addFile('./hardware-tests/general.js')
 
 let failures
