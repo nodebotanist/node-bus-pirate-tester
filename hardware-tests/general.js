@@ -10,7 +10,9 @@ const port = '/dev/ttyUSB0'
 const BusPirate = require('../BusPirate.js')
 let busPirate
 
-describe('LIVE HARDWARE: Main BusPirate module', () => {
+describe('LIVE HARDWARE: Main BusPirate module', function() {
+
+    this.timeout(5000)
 
     before(() => {
         busPirate = new BusPirate({
