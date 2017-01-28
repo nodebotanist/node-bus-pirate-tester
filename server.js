@@ -2,10 +2,11 @@ var express = require('express');
 var app = express();
 
 const Mocha = require('mocha')
-mocha.addFile('./test/all.js')
-mocha.addFile('./hardware-tests/general.js')
 
 let mocha = new Mocha()
+
+mocha.addFile('./test/all.js')
+mocha.addFile('./hardware-tests/general.js')
 
 // reply to request with "Hello World!"
 app.get('/', function(req, res) {
