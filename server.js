@@ -2,13 +2,13 @@ var express = require('express');
 var app = express();
 
 const Mocha = require('mocha')
+mocha.addFile('./test/all.js')
+mocha.addFile('./hardware-tests/general.js')
 
 let mocha = new Mocha()
 
 // reply to request with "Hello World!"
 app.get('/', function(req, res) {
-    // mocha.addFile('./test/all.js')
-    mocha.addFile('./hardware-tests/general.js')
     mocha.run((failures) => {
         if (failures) {
             res.sendStatus(500)
