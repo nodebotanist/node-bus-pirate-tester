@@ -1,3 +1,9 @@
+# base-image for node on any machine using a template variable,
+# see more about dockerfile templates here: http://docs.resin.io/deployment/docker-templates/
+# and about resin base images here: http://docs.resin.io/runtime/resin-base-images/
+# Note the node:slim image doesn't have node-gyp
+FROM resin/%%RESIN_MACHINE_NAME%%-node:slim
+
 # install git for cloning the repo, python and build-essential 
 # for compiling node-serialport on the BeagleBone
 RUN apt-get update && apt-get install git python build-essential
