@@ -7,7 +7,7 @@ const sinon = require('sinon')
 const fs = require('fs')
 const port = '/dev/ttyUSB0'
 
-const BusPirate = require('../BusPirate.js')
+const BusPirate = require('../node-bus-pirate/BusPirate.js')
 let busPirate
 
 describe('LIVE HARDWARE: Main BusPirate module', function() {
