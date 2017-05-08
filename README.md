@@ -25,3 +25,12 @@ This is meant to be a hardware tester for the (node-bus-pirate)[https://github.c
 ## Note on language
 
 While I did not change the language from third-party libraries, I dislike "master" and "slave" and use the terms "root" and "peripheral" whenever possible.
+
+## Roadmap
+
+* I2C peripheral emulation
+* SPI peripheral emulation
+* Flash with (AVRGIRL-usbtinyisp)[https://github.com/noopkat/avrgirl-usbtinyisp]
+* UART peripheral emulation
+* Allow bus pirate to swap modes
+* Write Node tests against AVR device
