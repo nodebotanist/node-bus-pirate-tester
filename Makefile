@@ -1,6 +1,6 @@
 # originally copied from examples for Make: AVR-- https://github.com/hexagon5un/AVR-Programming
 
-MCU   = atmega128p
+MCU   = atmega328p
 F_CPU = 1000000UL
 BAUD  = 9600UL
 
