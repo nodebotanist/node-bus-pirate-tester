@@ -1,2 +1,4 @@
 node_modules
-.resin-sync.yml
+*.o
+*.elf
+*.map
