@@ -1,3 +1,9 @@
+## Hookup Guide
+
+![](./I2C-hookup.png)
+
+## Running This Test
+
 1. Startup Serial w/Bus Pirate
 2. Enter I2C mode
 3. W to turn on power
