@@ -50,6 +50,8 @@ void I2C_stop_bit(){
 }
 
 void setup(){
+  initUSART();
+
   i2c_register = 0x00;
   I2C_setCallbacks(I2C_recieved, I2C_requested, I2C_stop_bit);
   I2C_init(I2C_ADDRESS);
@@ -58,5 +60,6 @@ void setup(){
 int main(){
   setup();
 
-  while(1){}
+  while(1){
+  }
 }
