@@ -1,4 +1,5 @@
 #include "I2CSlave.h"
+#include "USART.h"
 
 #define I2C_ADDRESS 0x1C
 
