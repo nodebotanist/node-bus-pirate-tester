@@ -2,3 +2,4 @@ node_modules
 *.o
 *.elf
 *.map
+*.hex
