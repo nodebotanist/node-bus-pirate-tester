@@ -2,13 +2,14 @@
 MMCU = atmega328
 GCC_OPT = Os
 LIB_DIR = ./libs
+F_CPU = 1000000UL
 
 # AVRDUDE FLAGS
 ARCH = m328p
 PROGRAMMER = usbtiny
 
 main.o:
-	avr-gcc -g -$(GCC_OPT) -mmcu=$(MMCU) -I $(LIB_DIR) -c main.c
+	avr-gcc -g -$(GCC_OPT) -DF_CPU=$(F_CPU) -mmcu=$(MMCU) -I $(LIB_DIR) -c main.c
 	mkdir -p ./build
 	mv main.o ./build/main.o
 
