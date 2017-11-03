@@ -18,7 +18,7 @@ main.elf: main.o
 main.hex: main.o main.elf
 	avr-objcopy -j .text -j .data -O ihex ./build/main.elf ./build/main.hex
 
-.PHONY: all clean test-wiring
+.PHONY: all clean test-wiring flash
 
 all: main.o main.elf main.hex
 
@@ -27,3 +27,6 @@ clean:
 
 test-wiring:
 	avrdude -c $(PROGRAMMER) -p $(ARCH)
+
+flash: main.hex
+	avrdude -c $(PROGRAMMER) -p $(ARCH) -U flash:w:./build/main.hex
