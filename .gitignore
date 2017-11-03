@@ -3,3 +3,4 @@ node_modules
 *.elf
 *.map
 *.hex
+build
