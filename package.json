@@ -1,0 +1,24 @@
+{
+  "name": "bus-pirate-tester",
+  "version": "1.0.0",
+  "description": "This is meant to be a hardware tester for the (node-bus-pirate)[https://github.com/nodebotanist/node-bus-pirate] library.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodebotanist/node-bus-pirate-tester.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nodebotanist/node-bus-pirate-tester/issues"
+  },
+  "homepage": "https://github.com/nodebotanist/node-bus-pirate-tester#readme",
+  "dependencies": {
+    "avrgirl-chips-json": "^2.0.2",
+    "avrgirl-usbtinyisp": "^1.0.2"
+  }
+}
