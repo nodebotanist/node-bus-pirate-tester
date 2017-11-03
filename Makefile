@@ -15,9 +15,12 @@ main.o:
 main.elf: main.o
 	avr-gcc -g -mmcu=$(MMCU) -o ./build/main.elf ./build/main.o
 
+main.hex: main.o main.elf
+	avr-objcopy -j .text -j .data -O ihex ./build/main.elf ./build/main.hex
+
 .PHONY: all clean test-wiring
 
-all: main.o main.elf
+all: main.o main.elf main.hex
 
 clean:
 	rm -f build/*.*
