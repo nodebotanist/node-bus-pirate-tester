@@ -9,10 +9,11 @@ PROGRAMMER = usbtiny
 
 main.o:
 	avr-gcc -g -$(GCC_OPT) -mmcu=$(MMCU) -I $(LIB_DIR) -c main.c
-	mv main.o build/main.o
+	mkdir -p ./build
+	mv main.o ./build/main.o
 
 main.elf: main.o
-	avr-gcc -g -mmcu=$(MMCU) -o build/main.elf build/main.o
+	avr-gcc -g -mmcu=$(MMCU) -o ./build/main.elf ./build/main.o
 
 .PHONY: all clean test-wiring
 
