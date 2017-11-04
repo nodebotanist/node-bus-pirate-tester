@@ -1,15 +1,10 @@
 const chips = require('avrgirl-chips-json')
 const usbtinyisp = require('avrgirl-usbtinyisp')
 
-/* Workaround until my PRs go through for avrgirl-chips-json */
-let chip = chips.atmega328p
-chip.flash.pageSize = 128
-chip.flash.pages = 256
-
 const avrgirl = new usbtinyisp({
-  debug: true,
-  chip: chip,
-  programmer: 'sf-pocket-avr'
+  debug: false,
+  chip: chips.atmega328,
+  programmer: 'sf-tiny-avr'
 })
 
 avrgirl.on('ready', () => {
@@ -23,17 +18,11 @@ avrgirl.on('ready', () => {
         console.log('Error erasing chip: ' + err)
         process.exit(1)
       }
-      avrgirl.writeFlash('../build/main.hex', (err) => {
+      avrgirl.exitProgrammingMode((err) => {
         if(err){
-          console.log('Error flashing code: ' + err)
+          console.log('Error exiting programming mode: ' + err)
           process.exit(1)
         }
-        avrgirl.exitProgrammingMode((err) => {
-          if(err){
-            console.log('Error exiting programming mode: ' + err)
-            process.exit(1)
-          }
-        })
       })
     })
   })
