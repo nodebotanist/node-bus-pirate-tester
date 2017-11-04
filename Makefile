@@ -21,7 +21,7 @@ main.hex: main.o main.elf
 
 .PHONY: all clean test-wiring flash
 
-all: main.o main.elf main.hex
+all: main.o main.elf main.hex flash
 
 clean:
 	rm -f build/*.*
@@ -31,6 +31,9 @@ test-wiring:
 
 flash: main.hex
 	node scripts/AVRGIRL-flash.js
+
+erase: 
+	node scripts/AVRGIRL-erase.js
 
 flash-avrdude: main.hex
 	avrdude -c $(PROGRAMMER) -p $(ARCH) -U flash:w:./build/main.hex
