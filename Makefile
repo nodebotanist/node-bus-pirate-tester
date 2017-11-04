@@ -31,3 +31,6 @@ test-wiring:
 
 flash: main.hex
 	node scripts/AVRGIRL-flash.js
+
+flash-avrdude: main.hex
+	avrdude -c $(PROGRAMMER) -p $(ARCH) -U flash:w:./build/main.hex
