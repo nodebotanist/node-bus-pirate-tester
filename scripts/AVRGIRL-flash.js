@@ -1,3 +1,4 @@
+const path = require('path')
 const chips = require('avrgirl-chips-json')
 const usbtinyisp = require('avrgirl-usbtinyisp')
 
@@ -23,7 +24,7 @@ avrgirl.on('ready', () => {
         console.log('Error erasing chip: ' + err)
         process.exit(1)
       }
-      avrgirl.writeFlash('../build/main.hex', (err) => {
+      avrgirl.writeFlash(path.resolve('build/main.hex'), (err) => {
         if(err){
           console.log('Error flashing code: ' + err)
           process.exit(1)
