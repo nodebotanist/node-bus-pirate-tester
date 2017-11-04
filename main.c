@@ -1,6 +1,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include "I2C.h"
+#include "UART.h"
 
 void setup(){
 }
