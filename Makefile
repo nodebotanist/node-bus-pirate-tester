@@ -19,15 +19,18 @@ main.elf: main.o
 main.hex: main.o main.elf
 	avr-objcopy -j .text -j .data -O ihex ./build/main.elf ./build/main.hex
 
-.PHONY: all clean test-wiring flash
+.PHONY: all clean checksig flash
 
 all: main.o main.elf main.hex flash
 
 clean:
 	rm -f build/*.*
 
-test-wiring:
+checksig-avrdude:
 	avrdude -c $(PROGRAMMER) -p $(ARCH)
+
+checksig:
+	node scripts/AVRGIRL-checksig.js
 
 flash: main.hex
 	node scripts/AVRGIRL-flash.js
