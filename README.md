@@ -9,28 +9,32 @@ This is meant to be a hardware tester for the (node-bus-pirate)[https://github.c
 * Some breadboarding wires
 * A Bus Pirate v3 or v4
 * Node.JS to run the tests
-* AVR-GCC and AVRDUDE (for now) to flash the firmware
+* AVR-GCC and AVRDUDE or (AVRGIRL-usbtinyisp)[https://github.com/noopkat/avrgirl-usbtinyisp] to flash the firmware
 
 ## How to intall the firmware
 
-* Clone this repo
-* cd into AVR-firmware
-* Modify the Makefile to reflect your programmer's serial port and, if necessary, which chip you're using
-* make flash
+make all
 
-## Credits
+If you don't have (AVRGIRL-usbtinyisp)[https://github.com/noopkat/avrgirl-usbtinyisp] installed:
 
-(I2C library I used)[https://github.com/thegouger/avr-i2c-slave]
+make main.hex
+make flash-avrdude
+
+### Other makefile commands
+
+* erase -- uses (AVRGIRL-usbtinyisp)[https://github.com/noopkat/avrgirl-usbtinyisp] to erase the chip
+* clean -- remaves all intermediary files and main.hex from the build directory
 
 ## Note on language
 
-While I did not change the language from third-party libraries, I dislike "master" and "slave" and use the terms "root" and "peripheral" whenever possible.
+While I will not change the language from third-party libraries, I dislike "master" and "slave" and use the terms "root" and "peripheral" whenever possible.
 
 ## Roadmap
 
+* Makfile will check chip signature
 * I2C peripheral emulation
 * SPI peripheral emulation
-* Flash with (AVRGIRL-usbtinyisp)[https://github.com/noopkat/avrgirl-usbtinyisp]
+* Flash with 
 * UART peripheral emulation
 * Allow bus pirate to swap modes
 * Write Node tests against AVR device
