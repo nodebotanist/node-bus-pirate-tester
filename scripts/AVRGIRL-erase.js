@@ -1,3 +1,5 @@
+#! /usr/bin/node
+const argv = require('yargs').argv
 const chips = require('avrgirl-chips-json')
 const usbtinyisp = require('avrgirl-usbtinyisp')
 
