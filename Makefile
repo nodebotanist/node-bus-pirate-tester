@@ -33,10 +33,10 @@ checksig:
 	node scripts/AVRGIRL-checksig.js
 
 flash: main.hex
-	node scripts/AVRGIRL-flash.js -t main -c atmega328p -p sf-pocket-avr
+	node scripts/AVRGIRL-flash.js -t main -c $(MMCU) -p sf-pocket-avr
 
 erase: 
-	node scripts/AVRGIRL-erase.js
+	node scripts/AVRGIRL-erase.js -c $(MMCU)
 
 flash-avrdude: main.hex
 	avrdude -c $(PROGRAMMER) -p $(ARCH) -U flash:w:./build/main.hex

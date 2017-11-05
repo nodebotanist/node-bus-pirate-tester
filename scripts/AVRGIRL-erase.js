@@ -1,12 +1,30 @@
 #! /usr/bin/node
-const argv = require('yargs').argv
+const argv = require('yargs')
+.options({
+  'programmer': {
+    alias: 'p',
+    describe: 'the type of programmer you are using',
+    default: 'sf-pocket-avr'
+  },
+  'chip': {
+    alias: 'c',
+    describe: 'the chip you wish to flash',
+    demandOption: true
+  }
+}).argv
 const chips = require('avrgirl-chips-json')
 const usbtinyisp = require('avrgirl-usbtinyisp')
 
+const chip = chips[argv.chip]
+if(!chip){
+  console.log('ERROR: invalid chip (not recognized by avrgirl-chips-json)')
+  process.exit(1)
+}
+
 const avrgirl = new usbtinyisp({
   debug: false,
-  chip: chips.atmega328,
-  programmer: 'sf-tiny-avr'
+  chip: chip,
+  programmer: argv.programmer
 })
 
 avrgirl.on('ready', () => {
@@ -25,6 +43,7 @@ avrgirl.on('ready', () => {
           console.log('Error exiting programming mode: ' + err)
           process.exit(1)
         }
+        console.log('Chip Erased!')
       })
     })
   })

@@ -57,6 +57,7 @@ avrgirl.on('ready', () => {
             console.log('Error exiting programming mode: ' + err)
             process.exit(1)
           }
+          console.log('Chip successfully flashed!')
         })
       })
     })
