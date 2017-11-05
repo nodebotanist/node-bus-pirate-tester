@@ -1,5 +1,5 @@
 # AVR-GCC FLAGS
-MMCU = atmega328
+MMCU = atmega328p
 GCC_OPT = Os
 LIB_DIR = ./libs
 F_CPU = 1000000UL
@@ -30,7 +30,7 @@ checksig-avrdude:
 	avrdude -c $(PROGRAMMER) -p $(ARCH)
 
 checksig:
-	node scripts/AVRGIRL-checksig.js
+	node scripts/AVRGIRL-checksig.js -c $(MMCU)
 
 flash: main.hex
 	node scripts/AVRGIRL-flash.js -t main -c $(MMCU) -p sf-pocket-avr
