@@ -45,3 +45,18 @@ void recieve_string(char string_recieved[], uint8_t max_string_length) {
 
   string_recieved[i] = 0;
 }
+
+char four_bits_to_hex(uint 4_bits){
+  if(four_bits < 10){
+    return ('0' + 4_bits);
+  } else {
+    return ('A' + (4_bits - 10));
+  }
+}
+
+void send_hex_byte(uint8_t byte){
+  uint8_t four_bits = (byte & 0b11110000) >> 4;
+  send_byte(four_bits_to_hex(four_bits));
+  four_bits = (byte & 0b00001111);
+  send_byte(four_bits_to_hex(four_bits));
+}
