@@ -21,14 +21,11 @@ const path = require('path')
 const chips = require('avrgirl-chips-json')
 const usbtinyisp = require('avrgirl-usbtinyisp')
 
-/* Workaround until my PRs go through for avrgirl-chips-json */
 let chip = chips[argv.chip]
 if(!chip){
   console.log('ERROR: Invalid chip (not recognized by avrgirl-chips-json)!')
   process.exit(1);
 }
-chip.flash.pageSize = 128
-chip.flash.pages = 256
 
 const avrgirl = new usbtinyisp({
   debug: true,
