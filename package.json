@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/nodebotanist/node-bus-pirate-tester#readme",
   "dependencies": {
-    "avrgirl-chips-json": "^2.0.2",
+    "avrgirl-chips-json": "^2.0.3",
     "avrgirl-usbtinyisp": "^1.0.2",
     "yargs": "^10.0.3"
   }
