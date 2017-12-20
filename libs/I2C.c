@@ -1,3 +1,4 @@
+#include <avr/io.h>
 #include "I2C.h"
 #include "pins.h"
 
@@ -8,4 +9,9 @@ void I2C_init(uint8_t multiplier){
 
 void I2C_wait_for_complete(void){
   loop_until_bit_is_set(TWCR, TWINT);
+}
+
+void I2C_start(void){
+  TWCR = (_BV(TWINT) | _BV(TWEN) | _BV(TWSTA));
+  I2C_wait_for_complete();
 }
