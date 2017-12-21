@@ -1,13 +1,16 @@
+#include <stdint.h>
 #include <avr/io.h>
+#include "UART.h"
+#include <util/setbaud.h>
 
 void uart_init(void){
   //set baud rate
-  UBBRH = (BAUD_RATE >> 8);
-  UBRRL = BAUD_RATE;
+  UBBR0H = (BAUD_RATE >> 8);
+  UBRR0L = BAUD_RATE;
   // enable RX/TX pins
-  UCSRB |= (1<<TXEN)|(1<<RXEN);
+  UCSR0B |= (1<<TXEN0)|(1<<RXEN0);
   // set transmission size to 8 bits (1 byte)
-  UCSRC |= (1<<URSEL)|(1<<UCSZ0)|(1<<USCZ1);
+  UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);
   return;
 }
 
@@ -18,10 +21,10 @@ void print_byte(uint8_t data){
 
 uint8_t recieve_byte(void){
   loop_until_bit_is_set(UCSR0A, RXC0);
-  return UDR0
+  return UDR0;
 }
 
-void print_string(const char() string_to_send){
+void print_string(const char string_to_send[]){
   uint8_t i = 0;
   while(string_to_send[i]){
     send_byte(string_to_send[i]);
@@ -35,7 +38,7 @@ void recieve_string(char string_recieved[], uint8_t max_string_length) {
 
   while(i < max_string_length - 1){
     byte_recieved = recieve_byte();
-    if(response == "\r"){
+    if(byte_recieved == "\r"){
       break;
     } else {
       string_recieved[i] = byte_recieved;
@@ -46,11 +49,11 @@ void recieve_string(char string_recieved[], uint8_t max_string_length) {
   string_recieved[i] = 0;
 }
 
-char four_bits_to_hex(uint 4_bits){
+char four_bits_to_hex(uint8_t four_bits){
   if(four_bits < 10){
-    return ('0' + 4_bits);
+    return ('0' + four_bits);
   } else {
-    return ('A' + (4_bits - 10));
+    return ('A' + (four_bits - 10));
   }
 }
 
