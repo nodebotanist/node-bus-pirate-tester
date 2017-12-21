@@ -17,6 +17,9 @@ PROGRAMMER = usbtiny
 main.elf: main.o
 	avr-gcc -g -mmcu=$(MMCU) ./build/libs/UART.o $(BUILD_DIR)$< -o $(BUILD_DIR)$@
 
+I2C_peripheral.elf: I2C_peripheral.o
+	avr-gcc -g -mmcu=$(MMCU) ./build/libs/I2C.o $(BUILD_DIR)$< -o $(BUILD_DIR)$@
+
 %.hex: %.elf
 	avr-objcopy -j .text -j .data -O ihex $(BUILD_DIR)$^ $@	
 
