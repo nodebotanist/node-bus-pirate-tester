@@ -1,3 +1,4 @@
+#include <stdint.h>
 // I2C library
 
 // buffer for address, input, output
@@ -24,10 +25,7 @@ uint8_t I2C_main_read(void);
 void I2C_send(uint8_t data);
 
 // I2C_peripheral_init(unsigned char address) -- configures the AVR as an I2C peripheral
-void I2C_peripheral_init(uint8_t address);
-
-// I2C_peripheral_start -- starts I2C peripheral
-void I2C_peripheral_start(void);
+void I2C_peripheral_start(uint8_t address);
 
 // I2C_peripheral_stop -- stops I2C peripheral
 void I2C_peripheral_stop(void);

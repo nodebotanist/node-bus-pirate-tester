@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <avr/io.h>
 #include <util/twi.h>
 #include <avr/interrupt.h>
@@ -34,7 +35,7 @@ void I2C_send(uint8_t data){
   I2C_wait_for_complete();
 }
 
-void I2C_peripheral_start(void){
+void I2C_peripheral_start(uint8_t address){
   // set I2C peripheral address
   TWAR = (address << 1);
   // Enable address matching
@@ -53,7 +54,7 @@ ISR(TWI_vect){
   // temporarily store data
   uint8_t data;
 
-  bool recieved = (TWSR & 0xF8);
+  uint8_t recieved = (TWSR & 0xF8);
 
   if(recieved == TW_SR_SLA_ACK) {
     // byte recieved was address of peripheral
