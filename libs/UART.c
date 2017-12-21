@@ -27,7 +27,7 @@ uint8_t recieve_byte(void){
 void print_string(const char string_to_send[]){
   uint8_t i = 0;
   while(string_to_send[i]){
-    send_byte(string_to_send[i]);
+    print_byte(string_to_send[i]);
     i++;
   }
 }
@@ -59,7 +59,7 @@ char four_bits_to_hex(uint8_t four_bits){
 
 void print_hex_byte(uint8_t byte){
   uint8_t four_bits = (byte & 0b11110000) >> 4;
-  send_byte(four_bits_to_hex(four_bits));
+  print_byte(four_bits_to_hex(four_bits));
   four_bits = (byte & 0b00001111);
-  send_byte(four_bits_to_hex(four_bits));
+  print_byte(four_bits_to_hex(four_bits));
 }
