@@ -2,9 +2,9 @@
 // I2C library
 
 // buffer for address, input, output
-volatile uint8_t buffer_address = 0xFF;
-volatile uint8_t input_buffer[0x00];
-volatile uint8_t output_buffer[0x00];
+volatile uint8_t buffer_address;
+volatile uint8_t input_buffer[0xFF];
+volatile uint8_t output_buffer[0xFF];
 
 // I2C_Init -- configures AVR as I2C main device multiplier can be set to 1 (100 kHz), or 4 (400 kHz)
 void I2C_init(uint8_t multiplier);
