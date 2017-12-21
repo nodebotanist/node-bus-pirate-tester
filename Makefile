@@ -30,7 +30,7 @@ all: build flash
 build: deps main.hex
 
 clean:
-	rm -f build/*.*
+	rm -f build/*.* && rm -rf build/libs && rm -f *.hex
 
 checksig-avrdude:
 	avrdude -c $(PROGRAMMER) -p $(ARCH)
