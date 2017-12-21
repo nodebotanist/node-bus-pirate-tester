@@ -27,7 +27,7 @@ I2C_peripheral.elf: I2C_peripheral.o
 
 all: build flash
 
-build: deps main.hex
+build: deps main.hex I2C_peripheral.hex
 
 clean:
 	rm -f build/*.* && rm -rf build/libs && rm -f *.hex
