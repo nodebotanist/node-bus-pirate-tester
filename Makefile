@@ -10,11 +10,10 @@ ARCH = m328p
 PROGRAMMER = usbtiny
 
 # DEPS
-DEPS := $(wildcard build/libs/*.o)
+DEPS_C = $(patsubst %.c,%.o,$(wildcard libs/*.c))
+DEPS = $(foreach dep, $(DEPS_C), build/$(dep))
 
 %.o: %.c
-	mkdir -p $(BUILD_DIR)
-	mkdir -p $(BUILD_DIR)$(LIB_DIR)
 	avr-gcc -g -$(GCC_OPT) -DF_CPU=$(F_CPU) -mmcu=$(MMCU) -I $(LIB_DIR) -c $< -o $(BUILD_DIR)$@
 
 %.elf: %.o
@@ -23,28 +22,32 @@ DEPS := $(wildcard build/libs/*.o)
 %.hex: %.elf
 	avr-objcopy -j .text -j .data -O ihex $(BUILD_DIR)$^ $@	
 
-.PHONY: all build checksig clean deps flash
+.PHONY: all build checksig checksig-avrdude clean deps flash flash-avrdude start
 
 all: build flash
 
-build: deps main.hex I2C_peripheral.hex
-
-clean:
-	rm -f build/*.* && rm -rf build/libs && rm -f *.hex
-
-checksig-avrdude:
-	avrdude -c $(PROGRAMMER) -p $(ARCH)
+build: start deps main.hex I2C_peripheral.hex
 
 checksig:
 	node scripts/AVRGIRL-checksig.js -c $(MMCU)
 
-deps: libs/UART.o libs/I2C.o
+checksig-avrdude:
+	avrdude -c $(PROGRAMMER) -p $(ARCH)
 
-flash: main.hex
-	node scripts/AVRGIRL-flash.js -t main -c $(MMCU) -p sf-pocket-avr
+clean:
+	rm -f build/*.* && rm -rf build/libs && rm -f *.hex
+
+deps: $(DEPS_C)
 
 erase: 
 	node scripts/AVRGIRL-erase.js -c $(MMCU)
 
+flash: main.hex
+	node scripts/AVRGIRL-flash.js -t main -c $(MMCU) -p sf-pocket-avr
+
 flash-avrdude: main.hex
 	avrdude -c $(PROGRAMMER) -p $(ARCH) -U flash:w:./build/main.hex
+
+start:
+	mkdir -p build
+	mkdir -p build/libs
