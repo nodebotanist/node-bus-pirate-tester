@@ -9,16 +9,16 @@ F_CPU = 1000000UL
 ARCH = m328p
 PROGRAMMER = usbtiny
 
+# DEPS
+DEPS := $(wildcard build/libs/*.o)
+
 %.o: %.c
 	mkdir -p $(BUILD_DIR)
 	mkdir -p $(BUILD_DIR)$(LIB_DIR)
 	avr-gcc -g -$(GCC_OPT) -DF_CPU=$(F_CPU) -mmcu=$(MMCU) -I $(LIB_DIR) -c $< -o $(BUILD_DIR)$@
 
-main.elf: main.o
-	avr-gcc -g -mmcu=$(MMCU) ./build/libs/UART.o $(BUILD_DIR)$< -o $(BUILD_DIR)$@
-
-I2C_peripheral.elf: I2C_peripheral.o
-	avr-gcc -g -mmcu=$(MMCU) ./build/libs/I2C.o $(BUILD_DIR)$< -o $(BUILD_DIR)$@
+%.elf: %.o
+	avr-gcc -g -mmcu=$(MMCU) $(DEPS) $(BUILD_DIR)$< -o $(BUILD_DIR)$@
 
 %.hex: %.elf
 	avr-objcopy -j .text -j .data -O ihex $(BUILD_DIR)$^ $@	
