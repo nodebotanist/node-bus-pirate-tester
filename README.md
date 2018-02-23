@@ -22,8 +22,10 @@ make flash-avrdude
 
 ### Other makefile commands
 
-* erase -- uses (AVRGIRL-usbtinyisp)[https://github.com/noopkat/avrgirl-usbtinyisp] to erase the chip
-* clean -- remaves all intermediary files and main.hex from the build directory
+* `erase` -- uses (AVRGIRL-usbtinyisp)[https://github.com/noopkat/avrgirl-usbtinyisp] to erase the chip
+* `clean` -- removes all intermediary files and main.hex from the build directory
+* `checksig`/`checksig-avrdude` -- checks the signature (using AVRGIRL by default, avrdude when specified)
+* `build` -- everything from `all` except `flash`
 
 ## Note on language
 
@@ -31,10 +33,10 @@ While I will not change the language from third-party libraries, I dislike "mast
 
 ## Roadmap
 
-* Makfile will check chip signature
-* I2C peripheral emulation
-* SPI peripheral emulation
-* Flash with 
-* UART peripheral emulation
-* Allow bus pirate to swap modes
-* Write Node tests against AVR device
+[] Makfile will check chip signature
+[] I2C peripheral emulation
+[] SPI peripheral emulation
+[x] Flash with AVRGIRL
+[] UART peripheral emulation
+[] Allow bus pirate to swap modes
+[] Write Node tests against AVR device
