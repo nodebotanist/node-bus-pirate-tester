@@ -33,10 +33,10 @@ While I will not change the language from third-party libraries, I dislike "mast
 
 ## Roadmap
 
-[] Makfile will check chip signature
-[] I2C peripheral emulation
-[] SPI peripheral emulation
-[x] Flash with AVRGIRL
-[] UART peripheral emulation
-[] Allow bus pirate to swap modes
-[] Write Node tests against AVR device
+- [x] Makfile will check chip signature
+- [ ] I2C peripheral emulation
+- [ ] SPI peripheral emulation
+- [x] Flash with AVRGIRL
+- [ ] UART peripheral emulation
+- [ ] Allow bus pirate to swap modes
+- [ ] Write Node tests against AVR device
