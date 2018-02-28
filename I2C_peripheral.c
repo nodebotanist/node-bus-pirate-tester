@@ -4,8 +4,8 @@
 #include <avr/interrupt.h>
 #include "I2C.h"
 
-uint8_t write_reg_value = 0x00
-uint8_t read_reg_value[2] = [0x12, 0x34]
+uint8_t write_reg_value = 0x00;
+uint8_t read_reg_value[2] = {0x12, 0x34};
 
 void setup() {
   uint8_t address = 0x3F;
