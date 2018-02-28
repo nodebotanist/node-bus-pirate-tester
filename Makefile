@@ -35,7 +35,7 @@ checksig-avrdude:
 	avrdude -c $(PROGRAMMER) -p $(ARCH)
 
 clean:
-	rm -f build/*.* && rm -rf build/libs && rm -f *.hex
+	rm -f $(BUILD_DIR)*.* && rm -rf $(BUILD_DIR)libs && rm -f *.hex
 
 deps: $(DEPS_C)
 
@@ -43,11 +43,11 @@ erase:
 	node scripts/AVRGIRL-erase.js -c $(MMCU)
 
 flash: main.hex
-	node scripts/AVRGIRL-flash.js -t main -c $(MMCU) -p sf-pocket-avr
+	node scripts/AVRGIRL-flash.js -t $(BUILD_DIR)main -c $(MMCU) -p sf-pocket-avr
 
 flash-avrdude: main.hex
 	avrdude -c $(PROGRAMMER) -p $(ARCH) -U flash:w:./build/main.hex
 
 start:
-	mkdir -p build
-	mkdir -p build/libs
+	mkdir -p $(BUILD_DIR)
+	mkdir -p $(BUILD_DIR)libs
