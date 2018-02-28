@@ -44,7 +44,7 @@ avrgirl.on('ready', () => {
         console.log('Error erasing chip: ' + err)
         process.exit(1)
       }
-      avrgirl.writeFlash(path.resolve('build/'+ argv.target +'.hex'), (err) => {
+      avrgirl.writeFlash(path.resolve(argv.target +'.hex'), (err) => {
         if(err){
           console.log('Error flashing code: ' + err)
           process.exit(1)
