@@ -20,11 +20,11 @@ DEPS = $(foreach dep, $(DEPS_C), build/$(dep))
 	avr-gcc -g -mmcu=$(MMCU) $(DEPS) $(BUILD_DIR)$< -o $(BUILD_DIR)$@
 
 %.hex: %.elf
-	avr-objcopy -j .text -j .data -O ihex $(BUILD_DIR)$^ $@	
+	avr-objcopy -j .text -j .data -O ihex $(BUILD_DIR)$^ $(BUILD_DIR)$@	
 
 .PHONY: all build checksig checksig-avrdude clean deps flash flash-avrdude start
 
-all: build flash
+all: start build flash
 
 build: start deps main.hex I2C_peripheral.hex
 
