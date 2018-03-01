@@ -26,7 +26,7 @@ DEPS = $(foreach dep, $(DEPS_C), build/$(dep))
 
 all: start build flash
 
-build: start deps main.hex I2C_peripheral.hex
+build: start deps main.hex
 
 checksig:
 	node scripts/AVRGIRL-checksig.js -c $(MMCU)
